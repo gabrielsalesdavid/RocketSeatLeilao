@@ -13,6 +13,7 @@ public class AuctionsController : ControllerBase
     {
         var useCase = new GetCurrentAuctionUseCase();
         var result = useCase.Execute();
+        result.Name.Trim();
         return Ok(result);
     }
 }
