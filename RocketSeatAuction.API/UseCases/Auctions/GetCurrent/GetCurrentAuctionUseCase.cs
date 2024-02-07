@@ -4,9 +4,14 @@ namespace RocketSeatAuction.API.UseCases.Auctions.GetCurrent;
 
 public class GetCurrentAuctionUseCase
 {
-    public Auction Execute()
+    public Auction? Execute()
     {
         var repository = new RocketSeatAuctionDbContext();
-        return repository.Auctions.First();        
+
+        var today = DateTime.Now;
+
+        return repository.Auctions
+                         .Include(auction => auction.Items)
+                         .FirstOrDefault(Auction => today >= Auction.Starts && today <= Auction.Ends);        
     }
 }

@@ -1,11 +1,14 @@
-﻿namespace RocketSeatAuction.API.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
+namespace RocketSeatAuction.API.Entities;
+
+[Table("Items")]
 public class Item
 {
     public int Id { get; set; }
-    public string Name { get; set; }
-    public string brand { get; set; }
-    public int Condition { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string Brand { get; set; } = string.Empty;
+    public Condition Condition { get; set; }
     public decimal BasePrice { get; set; }
     public int Auction { get; set; }
 
